@@ -1,0 +1,11 @@
+{
+    "name": "book-club",
+    "version": "1.0.0",
+    "description": "an application for creating and organizing book clubs",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Danny Tomkins",
+    "license": "MIT"
+}
