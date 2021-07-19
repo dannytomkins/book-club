@@ -1,8 +1,13 @@
 // require express, back end web framework
 const express = require('express')
 
+const connectDB = require('./config/db')
+
 // initialize app variable with express
 const app = express()
+
+// connect database
+connectDB();
 
 // test
 app.get('/', (req, res) => res.send('API Running'))
