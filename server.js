@@ -9,6 +9,9 @@ const app = express()
 // connect database
 connectDB();
 
+// init middleware, bodyparser
+app.use(express.json({extended: false}))
+
 // test
 app.get('/', (req, res) => res.send('API Running'))
 
