@@ -1,8 +1,14 @@
 const express = require('express');
 const router = express.Router();
+// used to connect to the platform Gravitar, which hosts global user avatars connected to email
+const gravatar = require('gravatar')
+// bcryptjs is used for encrypting passwords
+const bcrypt = require('bcryptjs')
+// express-validator-check is depricated, using express-validator instead
+// used to for check, check user input validation
+const {check, validationResult} = require('express-validator')
 
-// used to for check functoion, check user input validation
-const {check, validationResult} = require('express-validator/check')
+const User = require('../../models/User')
 
 // @route   POST api/users
 // @desc    Register user
@@ -16,12 +22,53 @@ router.post('/', [
     check('password', 'Please enter a password with 6 or more characters.')
         .isLength({min: 6})
     ],
-    (req, res) => {
+    async(req, res) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({errors: errors.array() })
         }
-        res.send('User route')
+
+        const { name, email, password } = req.body;
+
+        try {
+
+            // see if user exists
+            let user = await User.findOne({ email })
+
+            if(user) {
+                return res.status(400).json({errors: [{msg: 'User already exists'}]})
+            }
+
+            // get users gravitar
+            const avatar = gravatar.url(email, {
+                s: '200',
+                r: 'pg',
+                d: 'mm'
+            })
+
+            user = new User ({
+                name,
+                email,
+                avatar,
+                password
+            })
+
+            // encrypt password with bcrypt
+            const salt = await bcrypt.genSalt(10)
+
+            user.password = await bcrypt.hash(password, salt)
+
+            // await function to save user after password has been hashed
+            await user.save();
+
+            // return jsonwebtoken
+
+            res.send('User registered')
+        } catch(err) {
+            console.error(err.message);
+            res.status(500).send('Server error')
+        }
+
 })
 
 module.exports = router
