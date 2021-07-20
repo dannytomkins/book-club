@@ -4,6 +4,9 @@ const router = express.Router();
 const gravatar = require('gravatar')
 // bcryptjs is used for encrypting passwords
 const bcrypt = require('bcryptjs')
+// jsonwebtoken used for authentication
+const jwt = require('jsonwebtoken')
+const config = require('config')
 // express-validator-check is depricated, using express-validator instead
 // used to for check, check user input validation
 const {check, validationResult} = require('express-validator')
@@ -62,8 +65,23 @@ router.post('/', [
             await user.save();
 
             // return jsonwebtoken
+            const payload = {
+                user: {
+                    // underscore before id is not needed when using mongoose.
+                    id: user.id
+                }
+            }
 
-            res.send('User registered')
+            jwt.sign(
+                payload, 
+                config.get('jwtSecret'),
+                {expiresIn: 3600},
+                (err, token) => {
+                    if(err) throw err;
+                    res.json({ token })
+                }
+            )
+
         } catch(err) {
             console.error(err.message);
             res.status(500).send('Server error')
