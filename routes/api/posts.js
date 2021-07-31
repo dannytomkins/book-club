@@ -1,3 +1,5 @@
+// TO DO: check into err.kind
+
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
@@ -71,6 +73,36 @@ router.get('/:id', auth, async (req, res) => {
             return res.status(404).json({msg: 'Post not found.'})
         }
         res.json(post)
+    } catch (err) {
+        console.error(err.message);
+        if(err.kind === 'ObjentId') {
+            return res.status(404).json({msg: 'Post not found.'})
+        }
+        res.status(500).send('Server error');
+      }
+})
+
+
+// TO DO: Give club creators and admins ability to delete any post, maybe with their own route
+// @route   DELETE api/posts/:id
+// @desc    Delete a post by ID
+// @access  Private
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+
+        // Check if post exists
+        if(!post) {
+            return res.status(404).json({ msg: 'Post not found.'})
+        }
+
+        // Check user, post.user is not a string and req.user.id is a string, need to make post.user a string
+        if(post.user.toString() !== req.user.id) {
+            return res.status(401).json({msg: 'User not authorized.'})
+        }
+
+        await post.remove()
+        res.json({msg: 'Post removed.'})
     } catch (err) {
         console.error(err.message);
         if(err.kind === 'ObjentId') {
