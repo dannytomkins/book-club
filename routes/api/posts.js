@@ -96,7 +96,7 @@ router.delete('/:id', auth, async (req, res) => {
             return res.status(404).json({ msg: 'Post not found.'})
         }
 
-        // Check user, post.user is not a string and req.user.id is a string, need to make post.user a string
+        // Check user. post.user is not a string and req.user.id is a string, need to make post.user a string
         if(post.user.toString() !== req.user.id) {
             return res.status(401).json({msg: 'User not authorized.'})
         }
@@ -110,6 +110,32 @@ router.delete('/:id', auth, async (req, res) => {
         }
         res.status(500).send('Server error');
       }
+})
+
+// @route   PUT api/posts/like:id
+// @desc    Like a post
+// @access  Private
+router.put('/like/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+
+        // Check if the post has already been liked
+        if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+            return res.status(400).json({ msg: 'Post already liked.'})
+        }
+
+        // if post is not already liked, use unshift to put user at the beginning of array.
+        post.likes.unshift({ user: req.user.id });
+
+        await post.save()
+
+        res.json(post.likes)
+
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
 })
 
 module.exports = router;
