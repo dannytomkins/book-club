@@ -21,11 +21,13 @@ router.post(
 
         try {
             const user = await User.findById(req.user.id).select('-password')
-            // TO DO: add user as admin and member when creating newClub
+            // TO DO: figure out whats going on with members and admins
             const newClub = new Club({
-                name: req.body.text,
-                description: req.body.text,
-                creator: req.user.id,
+                name: req.body.name,
+                description: req.body.description,
+                creator: {user: req.user.id},
+                members: {user: req.user.id},
+                admins: {user: req.user.id}
             })
             const club = await newClub.save();
             res.json(club)
@@ -35,5 +37,27 @@ router.post(
         }
     }
 )
+
+// Allows any auth user to get club by ID
+// TO DO: check if user is member
+// @route   GET api/clubs/:id
+// @desc    Get club by ID
+// @access  Private
+router.get('/:id', auth, async (req, res) => {
+    try {
+        const club = await Club.findById(req.params.id)
+
+        if (!club) {
+            return res.status(404).json({ msg: 'Club not found.' });
+        }
+        res.json(club)
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjentId') {
+          return res.status(404).json({ msg: 'Club not found.' });
+        }
+        res.status(500).send('Server error');
+    }
+})
 
 module.exports = router;

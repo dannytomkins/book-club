@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const ClubSchema = new Schema({
     name: {
         type: String,
+        required: true
     },
     description: {
         type: String,
@@ -11,8 +12,8 @@ const ClubSchema = new Schema({
     creator: {
         user: {
             type: Schema.Types.ObjectId,
-            ref: 'users', 
-        }
+            ref: 'users',
+    }
    },
     members: [
         {
