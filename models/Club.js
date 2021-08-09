@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 const ClubSchema = new Schema({
     name: {
         type: String,
-        required: true,
     },
     description: {
         type: String,
-        required: true,
     },
     creator: {
-        type: Schema.Types.ObjectId,
-        ref: 'users',
-    },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users', 
+        }
+   },
     members: [
         {
             user: {
