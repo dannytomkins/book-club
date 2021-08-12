@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import setAlert, also include as a connect parameter below
 import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-const Register = ( props ) => {
+const Register = ({ setAlert }) => {
   // create state with default values
   const [formData, setFormData] = useState({
     name: '',
@@ -25,7 +26,7 @@ const Register = ( props ) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      props.setAlert('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger');
       console.log('Passwords do not match');
     } else {
       console.log('Success!', formData);
@@ -90,6 +91,10 @@ const Register = ( props ) => {
       </p>
     </Fragment>
   );
+};
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
 };
 
 // Whenever you bring in an action you have to pass it through connect.
