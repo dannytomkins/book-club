@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom'
+// import connect, also export below
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import setAlert, also include as a connect parameter below
+import { setAlert } from '../../actions/alert';
 
-
-export const Register = () => {
+export const Register = (props) => {
   // create state with default values
   const [formData, setFormData] = useState({
     name: '',
@@ -18,13 +21,14 @@ export const Register = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
+      props.setAlert('Passwords do not match', 'danger');
       console.log('Passwords do not match');
     } else {
       console.log('Success!', formData);
-      }
+    }
   };
 
   return (
@@ -86,3 +90,9 @@ export const Register = () => {
     </Fragment>
   );
 };
+
+// Whenever you bring in an action you have to pass it through connect.
+// connect takes 2 parameters. 1) any state that you want to map, 2) an object with any actions you want to use.
+// This allows us to access props.setAlert
+// export default Register
+export default connect(null, { setAlert })(Register);
