@@ -11,6 +11,10 @@ const PostSchema = new Schema({
 //     type: Schema.Types.ObjectId,
 //     ref: 'clubs',
 //   },
+  club: {
+    type: Schema.Types.ObjectId,
+    ref: 'clubs',
+  },
   text: {
     type: String,
     required: true,
