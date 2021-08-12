@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
+import { Component } from 'react';
 // import connect, also export below
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import setAlert, also include as a connect parameter below
 import { setAlert } from '../../actions/alert';
 
-export const Register = (props) => {
+const Register = ( props ) => {
   // create state with default values
   const [formData, setFormData] = useState({
     name: '',
