@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { Component } from 'react';
 // import connect, also export below
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
