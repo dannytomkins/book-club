@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import setAlert, also include as a connect parameter below
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 const Register = ({ setAlert }) => {
@@ -94,10 +95,11 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 // Whenever you bring in an action you have to pass it through connect.
 // connect takes 2 parameters. 1) any state that you want to map, 2) an object with any actions you want to use.
 // This allows us to access props.setAlert
 // export default Register
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
