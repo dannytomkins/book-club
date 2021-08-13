@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
 // import connect, also export below
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 // import setAlert, also include as a connect parameter below
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   // create state with default values
   const [formData, setFormData] = useState({
     name: '',
@@ -33,6 +33,10 @@ const Register = ({ setAlert, register }) => {
       console.log('Success!', formData);
     }
   };
+
+  if(isAuthenticated) {
+    return <Redirect to='/dashboard' />
+  }
 
   return (
     <Fragment>
@@ -97,10 +101,15 @@ const Register = ({ setAlert, register }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
 
 // Whenever you bring in an action you have to pass it through connect.
 // connect takes 2 parameters. 1) any state that you want to map, 2) an object with any actions you want to use.
 // This allows us to access props.setAlert
 // export default Register
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);
