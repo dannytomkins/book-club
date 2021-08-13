@@ -48,7 +48,7 @@ const Register = ({ setAlert, register }) => {
             name='name'
             value={name}
             onChange={(e) => onChange(e)}
-            required
+            // required
           />
         </div>
         <div className='form-group'>
@@ -58,7 +58,7 @@ const Register = ({ setAlert, register }) => {
             name='email'
             value={email}
             onChange={(e) => onChange(e)}
-            required
+            // required
           />
           <small className='form-text'>
             This site uses Gravatar. If you want a profile image, use an email
@@ -72,7 +72,7 @@ const Register = ({ setAlert, register }) => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            minLength='6'
+            // minLength='6'
           />
         </div>
         <div className='form-group'>
@@ -82,7 +82,7 @@ const Register = ({ setAlert, register }) => {
             name='password2'
             value={password2}
             onChange={(e) => onChange(e)}
-            minLength='6'
+            // minLength='6'
           />
         </div>
         <input type='submit' className='btn btn-primary' value='Register' />
