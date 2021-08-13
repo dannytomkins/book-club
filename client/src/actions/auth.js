@@ -40,6 +40,9 @@ export const register =
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
+
+      dispatch(loadUser())
+
     } catch (err) {
       const errors = err.response.data.errors;
 
@@ -71,6 +74,8 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+
+      dispatch(loadUser())
     } catch (err) {
       const errors = err.response.data.errors;
 
