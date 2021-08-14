@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,8 +8,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <a onClick={logout}>
-          <i className='fas fa-sign-out'></i>{' '}
+        <a onClick={logout} href='#!'>
+          <i className='fas fa-sign-out-alt' />{' '}
           <span className='hide-sm'>Logout</span>
         </a>
       </li>
@@ -28,6 +28,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
     </ul>
   );
+  // If authenticated show auth links, else show guest links
   return (
     <nav className='navbar bg-dark'>
       <h1>
@@ -35,17 +36,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <i className='fas fa-book-open'></i> Book Club
         </Link>
       </h1>
-      <ul>
-        <li>
-          <a href='profiles.html'>Profiles</a>
-        </li>
-        <li>
-          <Link to='/register'>Register</Link>
-        </li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
-      </ul>
+      { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks}</Fragment>)}
     </nav>
   );
 };
