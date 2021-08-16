@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
