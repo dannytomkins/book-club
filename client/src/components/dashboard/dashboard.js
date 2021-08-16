@@ -19,6 +19,7 @@ const Dashboard = ({
   // If the profile is null and is still loading then show spinner.
   // Else show Fragment
   // If user exists show user name.
+  // Check to see if profile is not equal to null
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -27,6 +28,7 @@ const Dashboard = ({
       <p className='lead'>
         <i className='fas fa-user'></i> Welcome {user && user.name}
       </p>
+      {profile !== null ? <Fragment>has profile</Fragment> : <Fragment>no profile</Fragment>}
     </Fragment>
   );
 };
