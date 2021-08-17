@@ -43,7 +43,7 @@ export const createProfile =
       });
 
       // if edit is true say profile updated, else say profile created
-      dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+      dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
       // if edit then stay on page, if creating then redirect
       if (!edit) {
