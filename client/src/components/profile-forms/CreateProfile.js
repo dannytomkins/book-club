@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile'
+import { createProfile } from '../../actions/profile';
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
@@ -19,17 +19,25 @@ const CreateProfile = ({ createProfile, history }) => {
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-  const { location, status, favorites, bio, twitter, facebook, linkedin, instagram } =
-    formData;
+  const {
+    location,
+    status,
+    favorites,
+    bio,
+    twitter,
+    facebook,
+    linkedin,
+    instagram,
+  } = formData;
 
   // onChange, setFormData get the rest of the formData object, get field by name use as key, get the value use as value
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
-      e.preventDefault();
-      createProfile(formData, history)
-  }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
 
   return (
     <Fragment>
@@ -39,7 +47,7 @@ const CreateProfile = ({ createProfile, history }) => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className='form' onSubmit={e => onSubmit(e)}>
+      <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           <input
             type='text'
@@ -153,8 +161,7 @@ const CreateProfile = ({ createProfile, history }) => {
 };
 
 CreateProfile.propTypes = {
-    createProfile: PropTypes.func.isRequired,
+  createProfile: PropTypes.func.isRequired,
 };
 
-
-export default connect(null, {createProfile})(withRouter(CreateProfile));
+export default connect(null, { createProfile })(withRouter(CreateProfile));
