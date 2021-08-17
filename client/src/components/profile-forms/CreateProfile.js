@@ -6,6 +6,7 @@ const CreateProfile = (props) => {
   const [formData, setFormData] = useState({
     location: '',
     status: '',
+    favorites: '',
     bio: '',
     twitter: '',
     facebook: '',
@@ -15,7 +16,7 @@ const CreateProfile = (props) => {
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-  const { location, status, bio, twitter, facebook, linkedin, instagram } =
+  const { location, status, favorites, bio, twitter, facebook, linkedin, instagram } =
     formData;
 
   // onChange, setFormData get the rest of the formData object, get field by name use as key, get the value use as value
