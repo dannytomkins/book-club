@@ -23,7 +23,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 // Create or update profile
 // pass in history object that has method push that will redirect to a client side route
 // in order to know if profile is new or editing, updating using a parameter named edit set to false by default
-export const createProfile = (FormData, history, edit = false) => async dispatch => {
+export const createProfile = (formData, history, edit = false) => async dispatch => {
   try {
     // since we are sending data we need to set up config object
     const config = {
@@ -53,7 +53,7 @@ export const createProfile = (FormData, history, edit = false) => async dispatch
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
     }
-    
+
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
