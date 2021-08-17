@@ -13,6 +13,8 @@ const CreateProfile = (props) => {
     instagram: '',
   });
 
+  const [displaySocialInputs, toggleSocialInputs] = useState(false)
+
   const { location, status, bio, twitter, facebook, linkedin, instagram } =
     formData;
 
@@ -49,12 +51,14 @@ const CreateProfile = (props) => {
           <small className='form-text'>Tell us a little about yourself</small>
         </div>
         <div className='my-2'>
-          <button type='button' className='btn btn-light'>
+          <button onClick={() => toggleSocialInputs(!displaySocialInputs)}type='button' className='btn btn-light'>
             Add Social Network Links
           </button>
           <span>Optional</span>
         </div>
 
+    {displaySocialInputs && <Fragment>
+        
         <div className='form-group social-input'>
           <i className='fab fa-twitter fa-2x'></i>
           <input type='text' placeholder='Twitter URL' name='twitter' />
@@ -74,6 +78,10 @@ const CreateProfile = (props) => {
           <i className='fab fa-instagram fa-2x'></i>
           <input type='text' placeholder='Instagram URL' name='instagram' />
         </div>
+
+        </Fragment>}
+
+
         <input type='submit' className='btn btn-primary my-1' />
         <a className='btn btn-light my-1' href='dashboard.html'>
           Go Back
