@@ -60,4 +60,21 @@ router.get('/:id', auth, async (req, res) => {
     }
 })
 
+// @route   GET api/clubs
+// @desc    Get all clubs user is member of
+// @access  Private
+router.get('/members/:user', auth, async (req, res) => {
+try {
+    const user = await User.findById(req.user.id).select('-password')
+    
+    const clubs = await Club.find({'members.user': user}).sort({ date: -1 })
+    
+    res.json(clubs)
+} catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+}
+})
+
+
 module.exports = router;
