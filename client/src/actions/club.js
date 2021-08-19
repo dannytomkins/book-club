@@ -1,21 +1,23 @@
-import axios from 'axios';
-import { setAlert } from './alert';
+// import axios from 'axios';
+// import { setAlert } from './alert';
 
-// TO DO: import types
+// import { GET_CLUBS_IN, CLUBS_IN_ERROR } from './types';
 
-// Get clubs current user is member of
-export const clubsIn = () => async (dispatch) => {
-    try {
-        const res = await axios.get('/api/clubs/members/:user')
+// // TO DO: import types
 
-        dispatch({
-            type: GET_CLUBS_IN,
-            payload: res.data,
-          });
-    } catch (err) {
-        dispatch({
-            type: CLUBS_IN_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status },
-          });
-    }
-}
+// // Get clubs current user is member of
+// export const clubsIn = () => async (dispatch) => {
+//     try {
+//         const res = await axios.get('/api/clubs/members/me')
+
+//         dispatch({
+//             type: GET_CLUBS_IN,
+//             payload: res.data,
+//           });
+//     } catch (err) {
+//         dispatch({
+//             type: CLUBS_IN_ERROR,
+//             payload: { msg: err.response.statusText, status: err.response.status },
+//           });
+//     }
+// }

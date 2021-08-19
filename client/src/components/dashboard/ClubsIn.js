@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-router-dom'
+import { clubsIn } from '../../actions/club'
 
-// pass in clubsIn from App.js
+// pass in clubsIn from somewhere
 const ClubsIn = ({ clubsIn }) => {
     const myClubs = clubsIn.map(club => (
         <td key={club._id}>

@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
-import ClubsIn from './ClubsIn';
+// import ClubsIn from './ClubsIn';
 import { getCurrentProfile } from '../../actions/profile';
 import PrivateRoute from '../routing/PrivateRoute';
+// import { clubsIn } from '../../actions/club';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -34,7 +35,7 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
-          <ClubsIn />
+          {/* <ClubsIn clubsIn={clubsIn}/> */}
         </Fragment>
       ) : (
         <Fragment>
