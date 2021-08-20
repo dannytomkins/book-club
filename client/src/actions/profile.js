@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_PROFILE, PROFILE_ERROR } from './types';
+import {
+  CLEAR_PROFILE,
+  ACCOUNT_DELETED,
+  GET_PROFILE,
+  PROFILE_ERROR,
+} from './types';
 
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -43,7 +48,9 @@ export const createProfile =
       });
 
       // if edit is true say profile updated, else say profile created
-      dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+      dispatch(
+        setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success')
+      );
 
       // if edit then stay on page, if creating then redirect
       if (!edit) {
@@ -62,3 +69,26 @@ export const createProfile =
       });
     }
   };
+
+// Delete account and profile.
+export const deleteAccount = () => async (dispatch) => {
+  if (
+    window.confirm(
+      'Are you sure you want to delete your account? This can NOT be undone!'
+    )
+  ) {
+    try {
+      const res = await axios.delete(`api/profile`);
+
+      dispatch({ type: CLEAR_PROFILE });
+      dispatch({ type: ACCOUNT_DELETED });
+
+      dispatch(setAlert('Your account has been permanently deleted.'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  }
+};

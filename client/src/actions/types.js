@@ -14,4 +14,4 @@ export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 // export const GET_CLUBS_IN= 'GET_CLUBS_IN'
 // export const CLUBS_IN_ERROR='CLUBS_IN_ERROR'
-export const DELETE_ACCOUNT = 'DELETE_ACCOUNT'
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED'
