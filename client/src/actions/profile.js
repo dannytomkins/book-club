@@ -46,6 +46,25 @@ export const getProfiles = () => async (dispatch) => {
   }
 };
 
+// Get profile by ID
+export const getProfileByID = userID => async (dispatch) => {
+  // clear what is in current profile, may prevent flashing of past users profiles
+  
+  try {
+    const res = await axios.get(`/api/profile/user/${userId}`);
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // Create or update profile
 // pass in history object that has method push that will redirect to a client side route
 // in order to know if profile is new or editing, updating using a parameter named edit set to false by default
