@@ -6,10 +6,10 @@ import { clubsIn } from '../../actions/club'
 // pass in clubsIn from somewhere
 const ClubsIn = ({ clubsIn }) => {
     const myClubs = clubsIn.map(club => (
-        <td key={club._id}>
+        <tr key={club._id}>
             <td>{club.name}</td>
             <td>{club.description}</td>
-        </td>
+        </tr>
     ))
     return (
         <Fragment>
