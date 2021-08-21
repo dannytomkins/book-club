@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 // import ClubsIn from './ClubsIn';
-import { deleteAccount, getCurrentProfile } from '../../actions/profile';
+import { deleteAccount, getCurrentProfile, getProfiles } from '../../actions/profile';
 import PrivateRoute from '../routing/PrivateRoute';
 // import { clubsIn } from '../../actions/club';
 
@@ -18,7 +18,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   // We dont want to load components before we get profile data from the server.
   // If the profile is null and is still loading then show spinner.
