@@ -47,7 +47,7 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getProfileByID = userID => async (dispatch) => {
+export const getProfileByID = userId => async (dispatch) => {
   // clear what is in current profile, may prevent flashing of past users profiles
   
   try {
