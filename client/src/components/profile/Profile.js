@@ -8,6 +8,7 @@ const Profile = ({
   getProfileById,
   profile: { profile, loading },
   auth,
+  // props.match.params.id in react can get the id from url
   match,
 }) => {
   useEffect(() => {
