@@ -5,7 +5,11 @@ import Spinner from '../layout/Spinner';
 import { getProfiles } from '../../actions/profile';
 
 const Profiles = ({getProfiles, profile: { profiles, loading }}) => {
-  return <div></div>;
+  useEffect(() => {
+      getProfiles();
+  }, [])
+  
+    return <div></div>;
 };
 
 Profiles.propTypes = {
