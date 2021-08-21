@@ -14,7 +14,13 @@ const Profile = ({
   useEffect(() => {
     getProfileById(match.params.id);
   }, [getProfileById]);
-  return <div>PROFILE</div>;
+  
+  return (
+    <Fragment>
+    {profile === null || loading ? <Spinner /> : <Fragment>PROFILE</Fragment>}
+  </Fragment>
+  );
+
 };
 
 Profile.propTypes = {
