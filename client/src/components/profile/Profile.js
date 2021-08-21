@@ -18,6 +18,8 @@ const Profile = ({
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
 
+  // @todo: change css profile-exp to club class
+  // @todo: create ProfileClub component and include below.
   return (
     <Fragment>
       {profile === null || loading ? (
@@ -34,8 +36,18 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
+            <div className="prifile-grid my-1">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            {/* <div className="profile-exp bg-white p-2">
+                <h2 className="text-primary">Clubs</h2>
+                {clubs.length > 0 ? (<Fragment>
+                    {profile.clubs.map(club => (
+                        <ProfileClub key={club._id} club={club} />
+                    ))}
+                </Fragment>) : (<h4>Has not joined any clubs</h4>)}
+            </div> */}
+            </div>
         </Fragment>
       )}
     </Fragment>
