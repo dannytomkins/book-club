@@ -42,7 +42,7 @@ const EditProfile = ({
       instagram: loading || !profile.social ? '' : profile.social.instagram,
     });
     // useEffect keeps reloading, so pass in the prop or condition loading to only run on loading
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     location,
