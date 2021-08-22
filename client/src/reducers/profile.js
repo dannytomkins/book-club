@@ -35,6 +35,8 @@ export default function (state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
+        // profile: null needed so new users dont pick up previous profile info in the state.
+        profile: null,
       };
     case CLEAR_PROFILE:
       return {
