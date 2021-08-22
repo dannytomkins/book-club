@@ -10,6 +10,8 @@ import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Clubs from './components/clubs/Clubs';
+import Posts from './components/posts/Posts';
 import PrivateRoute from './components/routing/PrivateRoute';
 // import provider from react redux, this connects react and redux
 import { Provider } from 'react-redux';
@@ -42,8 +44,18 @@ const App = () => {
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
-              <PrivateRoute exact path='/create-profile' component={CreateProfile} />
-              <PrivateRoute exact path='/edit-profile' component={EditProfile} />
+              <PrivateRoute
+                exact
+                path='/create-profile'
+                component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path='/edit-profile'
+                component={EditProfile}
+              />
+              <PrivateRoute exact path='/clubs' component={Clubs} />
+              <PrivateRoute exact path='/posts' component={Posts} />
             </Switch>
           </section>
         </Fragment>
