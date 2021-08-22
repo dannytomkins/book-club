@@ -1,20 +1,29 @@
-// import { GET_CLUBS_IN } from "../actions/types";
+import { GET_CLUBS, CLUB_ERROR } from '../actions/types';
 
-// const initialState = {
-//     clubsIn: [],
-//     loading: true,
-//     error: {}
-// }
+const initialState = {
+  clubs: [],
+  club: null,
+  loading: true,
+  error: {},
+};
 
-// export default function (state = initialState, action) {
-//     const { type, payload } = action
+export default function (state = initialState, action) {
+  const { type, payload } = action;
 
-//     switch(type) {
-//         case GET_CLUBS_IN:
-//             return {
-//                 ...state,
-//                 clubsIn: payload,
-//                 loading: false
-//             }
-//     }
-// }
+  switch (type) {
+    case GET_CLUBS:
+      return {
+        ...state,
+        clubs: payload,
+        loading: false,
+      };
+    case CLUBS_ERROR:
+      return {
+        ...state,
+        clubs: payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+}
