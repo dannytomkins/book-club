@@ -38,6 +38,19 @@ router.post(
     }
 )
 
+// @route   GET api/clubs
+// @desc    Get all clubs
+// @access  Private
+router.get('/', auth, async (req, res) => {
+    try {
+      const clubs = await Club.find().sort({ date: -1 });
+      res.json(clubs);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  });
+
 // Allows any auth user to get club by ID
 // TO DO: check if user is member
 // @route   GET api/clubs/:id
