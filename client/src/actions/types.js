@@ -16,3 +16,5 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 // export const GET_CLUBS_IN= 'GET_CLUBS_IN'
 // export const CLUBS_IN_ERROR='CLUBS_IN_ERROR'
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
+export const GET_POSTS = 'GET_POSTS'
+export const POST_ERROR = 'POST_ERROR'
