@@ -4,21 +4,21 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getPosts } from '../../actions/post';
 
-const Posts = ({ getPosts, post: { posts, loading }}) => {
+const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
-      getPosts()
-  }, [getPosts])
-  
-    return <div></div>;
+    getPosts();
+  }, [getPosts]);
+
+  return <div></div>;
 };
 
 Posts.propTypes = {
-    getPosts: PropTypes.func.isRequired,
-    post: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    post: state.post
-})
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
 
-export default connect(mapStateToProps, { getPosts})(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);
