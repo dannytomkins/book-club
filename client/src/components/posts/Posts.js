@@ -5,7 +5,11 @@ import Spinner from '../layout/Spinner';
 import { getPosts } from '../../actions/post';
 
 const Posts = ({ getPosts, post: { posts, loading }}) => {
-  return <div></div>;
+  useEffect(() => {
+      getPosts()
+  }, [getPosts])
+  
+    return <div></div>;
 };
 
 Posts.propTypes = {
