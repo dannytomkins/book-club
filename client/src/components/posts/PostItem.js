@@ -22,15 +22,17 @@ const PostItem = ({
           Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
         </p>
         <button type='button' class='btn btn-light'>
-          <i class='fas fa-thumbs-up'></i>
-          <span>{likes.length}</span>
+          <i class='fas fa-thumbs-up' />{' '}
+          <span>{likes.length > 0 && (
+              <span>{likes.length}</span>
+          )}</span>
         </button>
         <button type='button' class='btn btn-light'>
           <i class='fas fa-thumbs-down'></i>
         </button>
-        <a href='post.html' class='btn btn-primary'>
-          Discussion <span class='comment-count'>{comments.length}</span>
-        </a>
+        <Link to={`/post/${_id}`} class='btn btn-primary'>
+          Discussion {comments.length > 0 && (<span class='comment-count'>{comments.length}</span>)}
+        </Link>
         {/* if not loading and the post user is the same as logged in user then show button */}
         {!auth.loading && user === auth.user._id && (
           <button type='button' class='btn btn-danger'>
