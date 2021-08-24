@@ -30,9 +30,20 @@ const ClubItem = ({
         </Link>
         {/* if not loading and the club creator is the same as logged in user then show button */}
         {!auth.loading && creator.user === auth.user._id && (
-          <button onClick={e => deleteClub(_id)} type='button' class='btn btn-danger'>
-            <i class='fas fa-times' />{' Delete Club'}
-          </button>
+          <Fragment>
+            <button type='button' class='btn btn-primary'>
+              <i class='fas fa-times' />
+              {' Edit Clib'}
+            </button>
+            <button
+              onClick={(e) => deleteClub(_id)}
+              type='button'
+              class='btn btn-danger'
+            >
+              <i class='fas fa-times' />
+              {' Delete Club'}
+            </button>
+          </Fragment>
         )}
       </div>
     </div>
@@ -50,4 +61,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {deleteClub})(ClubItem);
+export default connect(mapStateToProps, { deleteClub })(ClubItem);
