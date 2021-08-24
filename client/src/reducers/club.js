@@ -28,7 +28,7 @@ export default function (state = initialState, action) {
     case CLUB_ERROR:
       return {
         ...state,
-        clubs: payload,
+        error: payload,
         loading: false,
       };
     default:
