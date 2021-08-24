@@ -1,4 +1,4 @@
-import { GET_CLUBS, DELETE_CLUB, CLUB_ERROR } from '../actions/types';
+import { GET_CLUB, GET_CLUBS, DELETE_CLUB, CLUB_ERROR } from '../actions/types';
 
 const initialState = {
   clubs: [],
@@ -11,6 +11,12 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case GET_CLUB:
+      return {
+        ...state,
+        club: payload,
+        loading: false,
+      }
     case GET_CLUBS:
       return {
         ...state,
@@ -30,6 +36,8 @@ export default function (state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
+        // club: null needed so new users dont pick up previous club info in the state.
+        club: null,
       };
     default:
       return state;
