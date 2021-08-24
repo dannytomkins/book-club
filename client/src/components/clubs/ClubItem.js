@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
+import { deleteClub } from '../../actions/club';
 
 const ClubItem = ({
+  deleteClub,
   auth,
   club: { _id, name, description, creator, members, admins, founded },
 }) => {
@@ -28,7 +30,7 @@ const ClubItem = ({
         </Link>
         {/* if not loading and the club creator is the same as logged in user then show button */}
         {!auth.loading && creator.user === auth.user._id && (
-          <button type='button' class='btn btn-danger'>
+          <button onClick={e => deleteClub(_id)} type='button' class='btn btn-danger'>
             <i class='fas fa-times' />{' Delete Club'}
           </button>
         )}
@@ -40,6 +42,7 @@ const ClubItem = ({
 ClubItem.propTypes = {
   club: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  deleteClub: PropTypes.func.isRequired,
 };
 
 // Bring in auth state to see who's who, so the creator functionality can only be seen by creator user
@@ -47,4 +50,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(ClubItem);
+export default connect(mapStateToProps, {deleteClub})(ClubItem);
