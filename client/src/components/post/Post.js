@@ -12,7 +12,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     
     return (
         <div>
-            POST PAGE
+            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt ducimus facilis iure sit sapiente rem voluptates nulla id deserunt minima a neque, quas provident consequuntur aliquam omnis eveniet nemo itaque.</h1>
         </div>
     )
 }
