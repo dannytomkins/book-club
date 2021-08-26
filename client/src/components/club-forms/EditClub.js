@@ -10,6 +10,7 @@ const EditClub = ({
   createClub,
   getClub,
   history,
+  match
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,7 +18,7 @@ const EditClub = ({
   });
 
   useEffect(() => {
-    getClub();
+    getClub(match.params.id);
     setFormData({
       name: loading || !club.name ? '' : club.name,
       description: loading || !club.description ? '' : club.description,
