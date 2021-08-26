@@ -12,6 +12,7 @@ import EditProfile from './components/profile-forms/EditProfile';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Clubs from './components/clubs/Clubs';
+import Club from './components/club/Club';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -56,15 +57,11 @@ const App = () => {
                 path='/edit-profile'
                 component={EditProfile}
               />
-              <PrivateRoute
-                exact
-                path='/create-club'
-                component={CreateClub}
-              />
+              <PrivateRoute exact path='/create-club' component={CreateClub} />
               <PrivateRoute exact path='/clubs' component={Clubs} />
+              <PrivateRoute exact path='/clubs/:id' component={Club} />
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
-
             </Switch>
           </section>
         </Fragment>
