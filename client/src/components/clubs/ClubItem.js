@@ -25,7 +25,7 @@ const ClubItem = ({
         </p>
         <i class='fas fa-users' /> <span>{members.length}</span>
         {' members'}
-        <Link to={`/club/${_id}`} class='btn btn-primary'>
+        <Link to={`/clubs/${_id}`} class='btn btn-primary'>
           Visit
         </Link>
         {/* if not loading and the club creator is the same as logged in user then show button */}
