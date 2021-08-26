@@ -20,6 +20,23 @@ export const getClubs = () => async (dispatch) => {
   }
 };
 
+// Get club
+export const getClub = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/clubs/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: CLUB_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // Delete club
 export const deleteClub = (id) => async (dispatch) => {
   if (
