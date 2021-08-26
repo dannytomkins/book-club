@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import ClubItem from '../posts/ClubItem';
+import ClubItem from '../clubs/ClubItem';
 import { getClub } from '../../actions/club';
 
 // bring in match to get the id from the URL
