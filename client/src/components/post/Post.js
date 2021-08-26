@@ -6,9 +6,13 @@ import { getPost } from '../../actions/post'
 
 // bring in match to get the id from the URL
 const Post = ({ getPost, post: { post, loading }, match }) => {
+    useEffect(() => {
+        getPost(match.params.id)
+    }, [getPost])
+    
     return (
         <div>
-            
+            POST PAGE
         </div>
     )
 }
