@@ -62,7 +62,6 @@ export const deleteClub = (id) => async (dispatch) => {
   }
 };
 
-
 // @TODO: correct that double dispatch, figure out how to edit club
 // Create or update club
 // pass in history object that has method push that will redirect to a client side route

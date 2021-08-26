@@ -13,6 +13,7 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Clubs from './components/clubs/Clubs';
 import Club from './components/club/Club';
+import EditClub from './components/club-forms/EditClub';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -58,6 +59,7 @@ const App = () => {
                 component={EditProfile}
               />
               <PrivateRoute exact path='/create-club' component={CreateClub} />
+              <PrivateRoute exact path='/edit-club' component={EditClub} />
               <PrivateRoute exact path='/clubs' component={Clubs} />
               <PrivateRoute exact path='/clubs/:id' component={Club} />
               <PrivateRoute exact path='/posts' component={Posts} />
