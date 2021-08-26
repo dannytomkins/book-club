@@ -1,15 +1,30 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 // import withRouter to access history
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createClub } from '../../actions/club';
+import { createClub, getClub } from '../../actions/club';
 
-const CreateClub = ({ createClub, history }) => {
+const EditClub = ({
+  club: { club, loading },
+  createClub,
+  getClub,
+  history,
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
   });
+
+  useEffect(() => {
+    getClub();
+    setFormData({
+      name: loading || !club.name ? '' : club.name,
+      description: loading || !club.description ? '' : club.description,
+    });
+  }, [loading, getClub]);
+
+  const { name, description } = formData;
 
   // onChange, setFormData get the rest of the formData object, get field by name use as key, get the value use as value
   const onChange = (e) =>
@@ -17,14 +32,12 @@ const CreateClub = ({ createClub, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createClub(formData, history);
+    createClub(formData, history, true);
   };
-
-  const { name, description } = formData;
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Create A Club</h1>
+      <h1 className='large text-primary'>Edit Your Club</h1>
       <p className='lead'>
         <i className='fas fa-user'></i> Let's get some information to make your
         club!
@@ -39,9 +52,10 @@ const CreateClub = ({ createClub, history }) => {
             value={name}
             onChange={(e) => onChange(e)}
           />
-          <small className='form-text'>What would you like to name your club?</small>
+          <small className='form-text'>
+            What would you like to name your club?
+          </small>
         </div>
-
 
         <div className='form-group'>
           <textarea
@@ -62,8 +76,17 @@ const CreateClub = ({ createClub, history }) => {
   );
 };
 
-CreateClub.propTypes = {
+EditClub.propTypes = {
   createClub: PropTypes.func.isRequired,
+  getClub: PropTypes.func.isRequired,
+  club: PropTypes.object.isRequired,
 };
 
-export default connect(null, { createClub })(withRouter(CreateClub));
+// need to bring in club state
+const mapStateToProps = (state) => ({
+  club: state.club,
+});
+
+export default connect(mapStateToProps, { createClub, getClub })(
+  withRouter(EditClub)
+);
