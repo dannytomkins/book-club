@@ -13,6 +13,7 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Clubs from './components/clubs/Clubs';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
 // import provider from react redux, this connects react and redux
 import { Provider } from 'react-redux';
@@ -62,6 +63,8 @@ const App = () => {
               />
               <PrivateRoute exact path='/clubs' component={Clubs} />
               <PrivateRoute exact path='/posts' component={Posts} />
+              <PrivateRoute exact path='/posts/id' component={Post} />
+
             </Switch>
           </section>
         </Fragment>
