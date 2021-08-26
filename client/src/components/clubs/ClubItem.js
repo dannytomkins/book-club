@@ -9,6 +9,7 @@ const ClubItem = ({
   deleteClub,
   auth,
   club: { _id, name, description, creator, members, admins, founded },
+  showActions
 }) => {
   return (
     <div class='post bg-white p-1 my-1'>
@@ -25,29 +26,38 @@ const ClubItem = ({
         </p>
         <i class='fas fa-users' /> <span>{members.length}</span>
         {' members'}
-        <Link to={`/clubs/${_id}`} class='btn btn-primary'>
-          Visit
-        </Link>
-        {/* if not loading and the club creator is the same as logged in user then show button */}
-        {!auth.loading && creator.user === auth.user._id && (
+        {/* if showActions is true then show Fragment */}
+        {showActions && (
           <Fragment>
-            <button type='button' class='btn btn-primary'>
-              <i class='fas fa-times' />
-              {' Edit Clib'}
-            </button>
-            <button
-              onClick={(e) => deleteClub(_id)}
-              type='button'
-              class='btn btn-danger'
-            >
-              <i class='fas fa-times' />
-              {' Delete Club'}
-            </button>
+            <Link to={`/clubs/${_id}`} class='btn btn-primary'>
+              Visit
+            </Link>
+            {/* if not loading and the club creator is the same as logged in user then show button */}
+            {!auth.loading && creator.user === auth.user._id && (
+              <Fragment>
+                <button type='button' class='btn btn-primary'>
+                  <i class='fas fa-times' />
+                  {' Edit Clib'}
+                </button>
+                <button
+                  onClick={(e) => deleteClub(_id)}
+                  type='button'
+                  class='btn btn-danger'
+                >
+                  <i class='fas fa-times' />
+                  {' Delete Club'}
+                </button>
+              </Fragment>
+            )}
           </Fragment>
         )}
       </div>
     </div>
   );
+};
+
+ClubItem.defaultProps = {
+  showActions: true,
 };
 
 ClubItem.propTypes = {
