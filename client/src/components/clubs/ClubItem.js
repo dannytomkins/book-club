@@ -35,10 +35,10 @@ const ClubItem = ({
             {/* if not loading and the club creator is the same as logged in user then show button */}
             {!auth.loading && creator.user === auth.user._id && (
               <Fragment>
-                <button type='button' class='btn btn-primary'>
+                <Link to={`/edit-club/${_id}`} type='button' class='btn btn-primary'>
                   <i class='fas fa-times' />
                   {' Edit Clib'}
-                </button>
+                </Link>
                 <button
                   onClick={(e) => deleteClub(_id)}
                   type='button'

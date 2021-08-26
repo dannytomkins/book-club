@@ -59,7 +59,7 @@ const App = () => {
                 component={EditProfile}
               />
               <PrivateRoute exact path='/create-club' component={CreateClub} />
-              <PrivateRoute exact path='/edit-club' component={EditClub} />
+              <PrivateRoute exact path='/edit-club/:id' component={EditClub} />
               <PrivateRoute exact path='/clubs' component={Clubs} />
               <PrivateRoute exact path='/clubs/:id' component={Club} />
               <PrivateRoute exact path='/posts' component={Posts} />
