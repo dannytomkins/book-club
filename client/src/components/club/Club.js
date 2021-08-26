@@ -9,7 +9,7 @@ import { getClub } from '../../actions/club';
 // bring in match to get the id from the URL
 const Club = ({ getClub, club: { club, loading }, match }) => {
   useEffect(() => {
-    getCost(match.params.id);
+    getClub(match.params.id);
   }, [getClub]);
 
   return loading || club === null ? (
