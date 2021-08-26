@@ -26,7 +26,7 @@ export const getClub = (id) => async (dispatch) => {
     const res = await axios.get(`/api/clubs/${id}`);
 
     dispatch({
-      type: GET_POST,
+      type: GET_CLUB,
       payload: res.data,
     });
   } catch (err) {
