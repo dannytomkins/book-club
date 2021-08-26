@@ -27,7 +27,7 @@ const PostItem = ({
         <p class='post-date'>
           Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
         </p>
-        if showActions is true then show Fragment
+        {/* if showActions is true then show Fragment */}
         {showActions && (
           <Fragment>
             <button
