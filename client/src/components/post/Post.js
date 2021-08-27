@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from '../posts/PostItem';
+import CommentForm from './CommentForm';
 import { getPost } from '../../actions/post';
 
 // bring in match to get the id from the URL
@@ -20,6 +21,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
             Back To Posts
         </Link>
       <PostItem post={post} showActions={false} />
+      <CommentForm postId={post._id}/>
     </Fragment>
   );
 };
