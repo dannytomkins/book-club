@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner'
 import { editClub, getClub } from '../../actions/club';
 
 const EditClub = ({
-  club: { club, loading },
+  club: { _id, club, loading },
   editClub,
   getClub,
   history,
@@ -34,7 +34,7 @@ const EditClub = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editClub(formData, history, true);
+    editClub(_id, formData, history, true);
   };
 
   return loading || club === null ? (
