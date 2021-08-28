@@ -101,3 +101,45 @@ export const createClub =
       });
     }
   };
+
+// @TODO: correct that double dispatch, figure out how to edit club
+// Edit club
+// pass in history object that has method push that will redirect to a client side route
+// in order to know if profile is new or editing, updating using a parameter named edit set to false by default
+export const editClub =
+  (id, formData, history, edit = false) =>
+  async (dispatch) => {
+    try {
+      // since we are sending data we need to set up config object
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const res = await axios.put(`/api/clubs/${id}`, formData, config);
+
+      //@TODO: figure out what type to dispatch on edit submit
+      dispatch({
+        // type: ADD_CLUB,
+        payload: res.data,
+      });
+
+      // if edit is true say club updated, else say club created
+      dispatch(setAlert(edit ? 'Club Updated' : 'Club Created', 'success'));
+
+      // @TODO: redirect back to club
+      // @TODO: remove edit value from createClub and editClub
+      // if edit then stay on page, if creating then redirect
+      if (!edit) {
+        history.push('/dashboard');
+      }
+
+    } catch (err) {
+      dispatch({
+        type: CLUB_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
