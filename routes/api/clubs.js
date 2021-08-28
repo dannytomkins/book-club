@@ -38,6 +38,7 @@ router.post(
   }
 );
 
+// @TODO: CHECK USER!!!!
 // @route   PUT api/clubs
 // @desc    Edit a club
 // @access  Private
@@ -53,12 +54,25 @@ router.put(
     try {
       // const user = await User.findById(req.user.id).select('-password');
       // TO DO: figure out whats going on with members and admins
-      const club = await Club.findById(req.params.id).updateOne(
-        req.body
-      );
+      const club = await Club.findById(req.params.id);
+
+      // Check if club exists
+      if (!club) {
+        return res.status(404).json({ msg: 'Club not found.' });
+      }
+
+      // Check user. club.creator.user is not a string and req.user.id is a string, need to make club.creator.user a string
+      if (club.creator.user.toString() !== req.user.id) {
+        return res.status(401).json({ msg: 'User not authorized.' });
+      }
+
+      await club.updateOne(req.body);
       res.json(club);
     } catch (err) {
       console.error(err.message);
+      if (err.kind === 'ObjentId') {
+        return res.status(404).json({ msg: 'Club not found.' });
+      }
       res.status(500).send('Server error');
     }
   }
