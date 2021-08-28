@@ -7,6 +7,7 @@ import Spinner from '../layout/Spinner'
 import { editClub, getClub } from '../../actions/club';
 
 const EditClub = ({
+  auth,
   club: { _id, club, loading },
   editClub,
   getClub,
@@ -84,10 +85,12 @@ EditClub.propTypes = {
   editClub: PropTypes.func.isRequired,
   getClub: PropTypes.func.isRequired,
   club: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 // need to bring in club state
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   club: state.club,
 });
 
