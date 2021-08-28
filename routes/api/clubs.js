@@ -38,6 +38,32 @@ router.post(
   }
 );
 
+// @route   PUT api/clubs
+// @desc    Edit a club
+// @access  Private
+router.put(
+  '/:id',
+  [auth, [check('name', 'Name is required').not().isEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+      // TO DO: figure out whats going on with members and admins
+      const club = await Club.findById(req.params.id).updateOne(
+        req.body
+      );
+      res.json(club);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  }
+);
+
 // @route   GET api/clubs
 // @desc    Get all clubs
 // @access  Private
