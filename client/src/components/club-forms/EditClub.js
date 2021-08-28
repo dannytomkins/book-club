@@ -3,6 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Spinner from '../layout/Spinner'
 import { editClub, getClub } from '../../actions/club';
 
 const EditClub = ({
@@ -36,7 +37,9 @@ const EditClub = ({
     editClub(formData, history, true);
   };
 
-  return (
+  return loading || club === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <h1 className='large text-primary'>Edit Your Club</h1>
       <p className='lead'>
