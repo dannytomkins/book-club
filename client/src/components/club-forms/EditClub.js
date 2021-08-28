@@ -3,11 +3,11 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createClub, getClub } from '../../actions/club';
+import { editClub, getClub } from '../../actions/club';
 
 const EditClub = ({
   club: { club, loading },
-  createClub,
+  editClub,
   getClub,
   history,
   match
@@ -33,7 +33,7 @@ const EditClub = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createClub(formData, history, true);
+    editClub(formData, history, true);
   };
 
   return (
@@ -78,7 +78,7 @@ const EditClub = ({
 };
 
 EditClub.propTypes = {
-  createClub: PropTypes.func.isRequired,
+  editClub: PropTypes.func.isRequired,
   getClub: PropTypes.func.isRequired,
   club: PropTypes.object.isRequired,
 };
@@ -88,6 +88,6 @@ const mapStateToProps = (state) => ({
   club: state.club,
 });
 
-export default connect(mapStateToProps, { createClub, getClub })(
+export default connect(mapStateToProps, { editClub, getClub })(
   withRouter(EditClub)
 );
