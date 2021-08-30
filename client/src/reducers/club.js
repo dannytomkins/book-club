@@ -1,4 +1,4 @@
-import { GET_CLUB, GET_CLUBS, DELETE_CLUB, CLUB_ERROR } from '../actions/types';
+import { GET_CLUB, GET_CLUBS, DELETE_CLUB, CLUB_ERROR, CLEAR_CLUB } from '../actions/types';
 
 const initialState = {
   clubs: [],
@@ -39,6 +39,12 @@ export default function (state = initialState, action) {
         // club: null needed so new users dont pick up previous club info in the state.
         club: null,
       };
+    case CLEAR_CLUB:
+      return {
+        ...state,
+        club: null,
+        loading: false,
+      }
     default:
       return state;
   }
