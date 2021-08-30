@@ -14,11 +14,12 @@ const EditClub = ({
   history,
   match
 }) => {
+  
   const [formData, setFormData] = useState({
     name: '',
     description: '',
   });
-
+  
   useEffect(() => {
     getClub(match.params.id);
     setFormData({
