@@ -19,7 +19,7 @@ const Club = ({ getClub, club: { club, loading }, match }) => {
         <Link to='/clubs' className='btn'>
             Back To Clubs
         </Link>
-      <ClubItem club={club} showActions={false}/>
+      <ClubItem club={club} showActions={true}/>
     </Fragment>
   );
 };
