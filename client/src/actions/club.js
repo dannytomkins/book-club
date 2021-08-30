@@ -5,6 +5,7 @@ import { GET_CLUBS, GET_CLUB, DELETE_CLUB, CLUB_ERROR, CLEAR_CLUB } from './type
 
 // // Get clubs
 export const getClubs = () => async (dispatch) => {
+  // clear what is in current club, may prevent errors
   dispatch({ type: CLEAR_CLUB })
   
   try {
@@ -24,6 +25,10 @@ export const getClubs = () => async (dispatch) => {
 
 // Get club
 export const getClub = (id) => async (dispatch) => {
+  
+    // clear what is in current club, may prevent errors
+    // dispatch({ type: CLEAR_CLUB })
+
   try {
     const res = await axios.get(`/api/clubs/${id}`);
 
