@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_CLUBS, GET_CLUB, DELETE_CLUB, CLUB_ERROR } from './types';
+import { GET_CLUBS, GET_CLUB, DELETE_CLUB, CLUB_ERROR, CLEAR_CLUB } from './types';
 
 // // Get clubs
 export const getClubs = () => async (dispatch) => {
+  dispatch({ type: CLEAR_CLUB })
+  
   try {
     const res = await axios.get('/api/clubs');
 
