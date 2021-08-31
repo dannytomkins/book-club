@@ -16,6 +16,7 @@ import Club from './components/club/Club';
 import EditClub from './components/club-forms/EditClub';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
+import Books from './components/books/Books';
 import PrivateRoute from './components/routing/PrivateRoute';
 // import provider from react redux, this connects react and redux
 import { Provider } from 'react-redux';
@@ -45,6 +46,7 @@ const App = () => {
             <Switch>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/books' component={Books} />
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
