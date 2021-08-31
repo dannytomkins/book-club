@@ -140,7 +140,7 @@ export const editClub =
       // @TODO: remove edit value from createClub and editClub
       // if edit then stay on page, if creating then redirect
       
-        history.push('/dashboard');
+        history.push(`/clubs/${id}`);
       
 
     } catch (err) {
