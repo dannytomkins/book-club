@@ -70,7 +70,7 @@ router.put(
       res.json(club);
     } catch (err) {
       console.error(err.message);
-      if (err.kind === 'ObjentId') {
+      if (err.kind === 'ObjectId') {
         return res.status(404).json({ msg: 'Club not found.' });
       }
       res.status(500).send('Server error');
@@ -106,7 +106,7 @@ router.get('/:id', auth, async (req, res) => {
     res.json(club);
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjentId') {
+    if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Club not found.' });
     }
     res.status(500).send('Server error');
@@ -150,7 +150,7 @@ router.delete('/:id', auth, async (req, res) => {
     res.json({ msg: 'Club deleted.' });
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjentId') {
+    if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Club not found.' });
     }
     res.status(500).send('Server error');

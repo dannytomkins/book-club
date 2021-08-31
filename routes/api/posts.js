@@ -72,7 +72,7 @@ router.get('/:id', auth, async (req, res) => {
     res.json(post);
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjentId') {
+    if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Post not found.' });
     }
     res.status(500).send('Server error');
@@ -101,7 +101,7 @@ router.delete('/:id', auth, async (req, res) => {
     res.json({ msg: 'Post removed.' });
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjentId') {
+    if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Post not found.' });
     }
     res.status(500).send('Server error');
