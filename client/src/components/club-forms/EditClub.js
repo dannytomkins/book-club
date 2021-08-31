@@ -36,7 +36,7 @@ const EditClub = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editClub(_id, formData, history, true);
+    editClub(match.params.id, formData, history);
   };
 
   return loading || club === null ? (
