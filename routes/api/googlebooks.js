@@ -15,8 +15,8 @@ const { check, validationResult } = require('express-validator');
 // @route   GET api/googlebooks/:term
 // @desc    Get book search from Googlebooks by params
 // @access  Public
-router.get('/:title', function(req, res) {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.title}&key=${config.get('googleBooksKey')}`).then(function(results){
+router.get('/:term', function(req, res) {
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.term}&key=${config.get('googleBooksKey')}`).then(function(results){
         res.json(results.data.items)
     })
 })
