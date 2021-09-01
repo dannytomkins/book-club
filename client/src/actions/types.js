@@ -18,20 +18,20 @@ export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 // Clubs
-export const GET_CLUB = 'GET_CLUB'
-export const GET_CLUBS= 'GET_CLUBS'
-export const CLUB_ERROR ='CLUB_ERROR'
-export const DELETE_CLUB = 'DELETE_CLUB'
-export const CLEAR_CLUB= 'CLEAR_CLUB'
+export const GET_CLUB = 'GET_CLUB';
+export const GET_CLUBS = 'GET_CLUBS';
+export const CLUB_ERROR = 'CLUB_ERROR';
+export const DELETE_CLUB = 'DELETE_CLUB';
+export const CLEAR_CLUB = 'CLEAR_CLUB';
 // Posts
-export const GET_POST = 'GET_POST'
-export const GET_POSTS = 'GET_POSTS'
-export const POST_ERROR = 'POST_ERROR'
-export const UPDATE_LIKES = 'UPDATE_LIKES'
-export const DELETE_POST = 'DELETE_POST'
-export const ADD_POST = 'ADD_POST'
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const REMOVE_COMMENT = 'REMOVE_COMMENT'
+export const GET_POST = 'GET_POST';
+export const GET_POSTS = 'GET_POSTS';
+export const POST_ERROR = 'POST_ERROR';
+export const UPDATE_LIKES = 'UPDATE_LIKES';
+export const DELETE_POST = 'DELETE_POST';
+export const ADD_POST = 'ADD_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 // Books
-export const GET_BOOKS = 'GET_BOOKS'
-export const BOOKS_ERROR = 'BOOKS_ERROR'
+export const GET_BOOKS = 'GET_BOOKS';
+export const BOOKS_ERROR = 'BOOKS_ERROR';
