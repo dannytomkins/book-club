@@ -32,3 +32,6 @@ export const DELETE_POST = 'DELETE_POST'
 export const ADD_POST = 'ADD_POST'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
+// Books
+export const GET_BOOKS = 'GET_BOOKS'
+export const BOOKS_ERROR = 'BOOKS_ERROR'
