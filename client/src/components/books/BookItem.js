@@ -28,6 +28,7 @@ const BookItem = ({
       <div>
         <p class='my-1'>{description}</p>
         {/* if showActions is true then show Fragment */}
+        {auth.user && (showActions = true)}
         {showActions && (
           <Fragment>
             <button class='btn btn-primary'>
@@ -44,7 +45,7 @@ const BookItem = ({
 };
 
 BookItem.defaultProps = {
-  showActions: true,
+  showActions: false,
 };
 
 BookItem.propTypes = {
