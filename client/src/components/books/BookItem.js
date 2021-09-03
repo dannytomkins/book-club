@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const BookItem = ({
   auth,
@@ -46,6 +47,7 @@ BookItem.defaultProps = {
 };
 
 BookItem.propTypes = {
+  book: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
@@ -54,4 +56,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default BookItem;
+export default connect(mapStateToProps, null)(BookItem);
