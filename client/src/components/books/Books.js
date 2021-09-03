@@ -7,9 +7,9 @@ import BookItem from './BookItem';
 import { getBooksByTitle } from '../../actions/book';
 
 // check what the parameter 'results' should be called
-const Books = ({ getBooksByTitle }) => {
+const Books = ({ getBooksByTitle, book: {books, loading} }) => {
   const [term, setTerm] = useState('')
-  const [books, setBooks] = useState([])
+  // const [books, setBooks] = useState([])
   
   // useEffect(() => {
   //   getBooksByTitle()
@@ -22,10 +22,11 @@ const Books = ({ getBooksByTitle }) => {
     
   const onSubmit = (e) => {
     e.preventDefault()
-    getBooksByTitle(term).then(results => {
+    getBooksByTitle(term)
+    // .then(books => {
       console.log('term', term, books)
-      setBooks(books)
-    })
+    //   setBooks(books)
+    // })
   }
 
   return null ? (
