@@ -4,6 +4,7 @@ import auth from './auth';
 import profile from './profile';
 import club from './club'
 import post from './post';
+import book from '/book'
 
 export default combineReducers({
   alert,
@@ -11,4 +12,5 @@ export default combineReducers({
   profile,
   club,
   post,
+  book,
 });

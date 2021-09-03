@@ -11,9 +11,9 @@ const Books = ({ getBooksByTitle }) => {
   const [term, setTerm] = useState('')
   const [books, setBooks] = useState([])
   
-  useEffect(() => {
-    getBooksByTitle()
-  }, [])
+  // useEffect(() => {
+  //   getBooksByTitle()
+  // }, [])
 
   const onChange = e => {
     const {value} = e.target
@@ -22,8 +22,8 @@ const Books = ({ getBooksByTitle }) => {
     
   const onSubmit = (e) => {
     e.preventDefault()
-    getBooksByTitle(term).then(books => {
-      console.log(books)
+    getBooksByTitle(term).then(results => {
+      console.log('term', term, books)
       setBooks(books)
     })
   }
