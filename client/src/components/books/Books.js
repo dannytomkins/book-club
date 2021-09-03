@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -7,20 +7,37 @@ import BookItem from './BookItem';
 import { getBooksByTitle } from '../../actions/book';
 
 // check what the parameter 'results' should be called
-const Books = ({ getBooksByTitle, book: { results, loading }}) => {
+const Books = ({ getBooksByTitle }) => {
+  const [term, setTerm] = useState('')
+  const [books, setBooks] = useState([])
+  
   useEffect(() => {
     getBooksByTitle()
   }, [])
-    return loading ? (
+
+  const onChange = e => {
+    const {value} = e.target
+    setTerm(value)
+  }
+    
+  const onSubmit = (e) => {
+    e.preventDefault()
+    getBooksByTitle(term).then(books => {
+      console.log(books)
+      setBooks(books)
+    })
+  }
+
+  return null ? (
         <Spinner />
       ) : (
         <Fragment>
             <div>BOOKS - under construction</div>
-            <SearchBooks />
+            <SearchBooks term={term} onChange={onChange} onSubmit={onSubmit}/>
             <div className='posts'>
-              {results.length > 0 ? results.map((book) => (
+              {/* {books.length > 0 ? books.map((book) => (
             <BookItem key={book.id} book={book}/>
-            )) : "No books found"}
+            )) : "No books found"} */}
             </div>
         </Fragment>
       );
