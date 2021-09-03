@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // @TODO: shorten book descriptions, error using substring
+// @TODO: visually change button if item is already a favorite
 const BookItem = ({
   auth,
   book: {
@@ -31,12 +32,22 @@ const BookItem = ({
         {auth.user && (showActions = true)}
         {showActions && (
           <Fragment>
-            <button class='btn btn-primary'>
-              {null > 0 && <span class='comment-count'>{null}</span>}
-            </button>
-            <button onClick={null} type='button' class='btn btn-danger'>
-              <i class='fas fa-times'></i>
-            </button>
+                <button
+                  onClick={null}
+                  type='button'
+                  class='btn btn-primary'
+                >
+                  <i class='far fa-star' />
+                  {' Add to Favorites'}
+                </button>
+                <button
+                  onClick={null}
+                  type='button'
+                  class='btn btn-primary'
+                >
+                  <i class='far fa-bookmark' />
+                  {' Add to Reading List'}
+                </button>
           </Fragment>
         )}
       </div>
