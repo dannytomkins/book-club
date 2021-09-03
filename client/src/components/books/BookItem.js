@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// @TODO: shorten book descriptions, error using substring
 const BookItem = ({
   auth,
   book: {
