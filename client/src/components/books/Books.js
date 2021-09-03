@@ -5,14 +5,12 @@ import Spinner from '../layout/Spinner';
 import SearchBooks from '../book-forms/SearchBooks';
 import BookItem from './BookItem';
 import { getBooksByTitle } from '../../actions/book';
-import books from '../../reducers/books';
 
-
-const Books = (  ) => {
+const Books = ({ getBooksByTitle, book: { books, loading }}) => {
   useEffect(() => {
     getBooksByTitle()
   }, [])
-    return null ? (
+    return loading ? (
         <Spinner />
       ) : (
         <Fragment>
