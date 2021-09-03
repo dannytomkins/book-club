@@ -2,17 +2,17 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
-const BookItem = ({auth, showActions}) => {
+const BookItem = ({auth, book: { id, volumeInfo}, showActions}) => {
     return (
         <div class='post bg-white p-1 my-1'>
           <div>
-            <Link to={`/profile/${null}`}>
-              <img class='round-img' src={null} alt='' />
-              <h4>{null}</h4>
-            </Link>
+            {/* <Link to={`/profile/${null}`}> */}
+              <img class='round-img' src={volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'http://placehold.it/300x300/'} alt='' />
+              <h4>{volumeInfo.title}</h4>
+            {/* </Link> */}
           </div>
           <div>
-            <p class='my-1'>{null}</p>
+            <p class='my-1'>{volumeInfo.description}</p>
             {/* if showActions is true then show Fragment */}
             {showActions && (
               <Fragment>

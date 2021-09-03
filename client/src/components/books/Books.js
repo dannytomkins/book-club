@@ -36,9 +36,9 @@ const Books = ({ getBooksByTitle, book: {books, loading} }) => {
             <div>BOOKS - under construction</div>
             <SearchBooks term={term} onChange={onChange} onSubmit={onSubmit}/>
             <div className='posts'>
-              {/* {books.length > 0 ? books.map((book) => (
+              {books.length > 0 ? books.map((book) => (
             <BookItem key={book.id} book={book}/>
-            )) : "No books found"} */}
+            )) : "No books found"}
             </div>
         </Fragment>
       );
