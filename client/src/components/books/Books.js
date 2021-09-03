@@ -5,6 +5,7 @@ import Spinner from '../layout/Spinner';
 import SearchBooks from '../book-forms/SearchBooks';
 import BookItem from './BookItem';
 import { getBooksByTitle } from '../../actions/book';
+import books from '../../reducers/books';
 
 
 const Books = (  ) => {
@@ -17,7 +18,11 @@ const Books = (  ) => {
         <Fragment>
             <div>BOOKS - under construction</div>
             <SearchBooks />
+            <div className='posts'>
+              {books.map((book) => (
             <BookItem key={book.id} book={book}/>
+            ))}
+            </div>
         </Fragment>
       );
 }
