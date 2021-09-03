@@ -6,7 +6,8 @@ import SearchBooks from '../book-forms/SearchBooks';
 import BookItem from './BookItem';
 import { getBooksByTitle } from '../../actions/book';
 
-const Books = ({ getBooksByTitle, book: { books, loading }}) => {
+// check what the parameter 'results' should be called
+const Books = ({ getBooksByTitle, book: { results, loading }}) => {
   useEffect(() => {
     getBooksByTitle()
   }, [])
@@ -17,9 +18,9 @@ const Books = ({ getBooksByTitle, book: { books, loading }}) => {
             <div>BOOKS - under construction</div>
             <SearchBooks />
             <div className='posts'>
-              {books.map((book) => (
+              {results.length > 0 ? results.map((book) => (
             <BookItem key={book.id} book={book}/>
-            ))}
+            )) : "No books found"}
             </div>
         </Fragment>
       );
