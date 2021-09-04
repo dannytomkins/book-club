@@ -8,8 +8,8 @@ const auth = require('../../middleware/auth');
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Club = require('../../models/Club')
 // @TODO: integrate clubs
-// const Club = require('../../models/Club')
 
 // @TODO: currently entire club object is passed to make a post, see if this can be id only
 // @route   POST api/posts
@@ -46,7 +46,6 @@ router.post(
   }
 );
 
-// @TODO: find post for specific club, ? Post.find() where club = club ?
 // @route   GET api/posts
 // @desc    Get all post
 // @access  Private
@@ -60,7 +59,21 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @TODO: find post for specific club, ? Post.find() where club = club ?
+// @route   GET api/posts/club/:id
+// @desc    Get all posts by club id
+// @access  Private
+router.get('/club/:id', auth, async (req, res) => {
+  try {
+    const club = await Club.findById(req.params.id);
+    
+    const posts = await Post.find({'club': club}).sort({ date: -1 });
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // @route   GET api/posts/:id
 // @desc    Get post by ID
 // @access  Private
