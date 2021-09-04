@@ -31,7 +31,7 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
-        // club: req.club.id
+        club: req.params.id
       });
 
       const post = await newPost.save();
