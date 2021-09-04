@@ -53,7 +53,7 @@ router.put(
 
     try {
       // const user = await User.findById(req.user.id).select('-password');
-      // TO DO: figure out whats going on with members and admins
+      // @TODO: figure out whats going on with members and admins
       const club = await Club.findById(req.params.id);
 
       // Check if club exists

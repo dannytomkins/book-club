@@ -6,11 +6,6 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
   },
-//   TO DO: connect posts to clubs
-//   club: {
-//     type: Schema.Types.ObjectId,
-//     ref: 'clubs',
-//   },
   club: {
     type: Schema.Types.ObjectId,
     ref: 'clubs',

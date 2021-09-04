@@ -46,7 +46,7 @@ router.post(
   }
 );
 
-// TO DO: find post for specific club, ? Post.find() where club = club ?
+// @TODO: find post for specific club, ? Post.find() where club = club ?
 // @route   GET api/posts
 // @desc    Get all post
 // @access  Private
@@ -60,7 +60,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// TO DO: find post for specific club, ? Post.find() where club = club ?
+// @TODO: find post for specific club, ? Post.find() where club = club ?
 // @route   GET api/posts/:id
 // @desc    Get post by ID
 // @access  Private
@@ -81,7 +81,7 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-// TO DO: Give club creators and admins ability to delete any post, maybe with their own route
+// @TODO: Give club creators and admins ability to delete any post, maybe with their own route
 // @route   DELETE api/posts/:id
 // @desc    Delete a post by ID
 // @access  Private
