@@ -8,9 +8,10 @@ const auth = require('../../middleware/auth');
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-// TO DO: integrate clubs
+// @TODO: integrate clubs
 // const Club = require('../../models/Club')
 
+// @TODO: currently entire club object is passed to make a post, see if this can be id only
 // @route   POST api/posts
 // @desc    Create a post
 // @access  Private
