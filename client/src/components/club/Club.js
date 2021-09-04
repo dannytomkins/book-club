@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ClubItem from '../clubs/ClubItem';
+import PostForm from '../posts/PostForm';
 import { getClub } from '../../actions/club';
 
 // bring in match to get the id from the URL
@@ -20,6 +21,7 @@ const Club = ({ getClub, club: { club, loading }, match }) => {
             Back To Clubs
         </Link>
       <ClubItem club={club} showActions={true}/>
+      <PostForm />
     </Fragment>
   );
 };
