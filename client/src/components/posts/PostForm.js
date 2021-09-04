@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
 
-const PostForm = ({ addPost }) => {
+const PostForm = ({ addPost, club }) => {
   // since there is only one field, pass state as empty string rather than a formData object
   const [text, setText] = useState('');
 
@@ -16,7 +16,7 @@ const PostForm = ({ addPost }) => {
         class='form my-1'
         onSubmit={(e) => {
           e.preventDefault();
-          addPost({ text });
+          addPost({ text, club });
           // clear form after onSubmit
           setText('')
         }}

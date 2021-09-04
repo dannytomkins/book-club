@@ -21,7 +21,7 @@ const Club = ({ getClub, club: { club, loading }, match }) => {
             Back To Clubs
         </Link>
       <ClubItem club={club} showActions={true}/>
-      <PostForm />
+      <PostForm club={club }/>
     </Fragment>
   );
 };
