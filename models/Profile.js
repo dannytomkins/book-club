@@ -17,6 +17,9 @@ const ProfileSchema = new mongoose.Schema({
   favorites: [
     {
       book: {
+        id: {
+          type: String,
+        },
         title: {
           type: String,
         },
