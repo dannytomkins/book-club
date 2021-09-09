@@ -124,6 +124,34 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
+// @route    PUT api/profile/favorites
+// @desc     Add profile favorite
+// @access   Private
+router.put(
+  '/favorites',
+  auth,
+
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.favorites.unshift(req.body);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
 // @route   DELETE api/profile
 // @desc    Delete profile, user & posts
 // @access  Private
