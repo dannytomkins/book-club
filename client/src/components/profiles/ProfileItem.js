@@ -20,9 +20,9 @@ const ProfileItem = ({ profile: {
                 </Link>
             </div>
             <ul>
-                {favorites.slice(0,5).map((favorite, index) => (
-                    <li key={index} className="text-primary">
-                        <i className="fas fa-bookmark" />{favorite}
+                {favorites.slice(0,5).map((book, _id) => (
+                    <li key={_id} className="text-primary">
+                        <i className="fas fa-bookmark" />{book.book.title}
                     </li>
                 ))}
             </ul>
