@@ -22,7 +22,7 @@ const ProfileItem = ({ profile: {
             <ul>
                 {favorites.slice(0,5).map((book, _id) => (
                     <li key={_id} className="text-primary">
-                        <i className="fas fa-bookmark" />{book.book.title}
+                        <i className="fas fa-bookmark" /> {book.title}
                     </li>
                 ))}
             </ul>

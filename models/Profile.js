@@ -16,25 +16,23 @@ const ProfileSchema = new mongoose.Schema({
   },
   favorites: [
     {
-      book: {
-        googleId: {
-          type: String,
-        },
-        title: {
-          type: String,
-        },
-        authors: {
-          type: Array,
-        },
-        description: {
-          type: String,
-        },
-        image: {
-          type: String,
-        },
-        thumbnail: {
-          type: String,
-        },
+      googleId: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+      authors: {
+        type: Array,
+      },
+      description: {
+        type: String,
+      },
+      image: {
+        type: String,
+      },
+      thumbnail: {
+        type: String,
       },
     },
   ],
