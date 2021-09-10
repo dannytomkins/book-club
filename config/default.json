@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://dtomkins:PrfLyRHiTuEz8CNB@book-club.imrli.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken",
-    "googleBooksKey": "AIzaSyB0Sk7IYWTEjHF7c1h6TOEhXGsGxWP7-BU"
-}
