@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 // need getCurrentProfile as well to edit
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
+// @TODO: add remove from favorites functionality
 // need profile state with profile and loading
 const EditProfile = ({
   profile: { profile, loading },
@@ -96,7 +97,7 @@ const EditProfile = ({
             City & state suggested (eg. Boston, MA)
           </small>
         </div>
-        <div className='form-group'>
+        {/* <div className='form-group'>
           <input
             type='text'
             placeholder='* Favorites'
@@ -108,7 +109,7 @@ const EditProfile = ({
             Please use comma separated values (eg. Anna Karenina,To Kill a
             Mockingbird,Emma)
           </small>
-        </div>
+        </div> */}
         <div className='form-group'>
           <textarea
             placeholder='A short bio of yourself'
