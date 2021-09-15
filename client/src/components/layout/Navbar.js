@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
+// @TODO: remove posts from navbar, remove all posts page
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
@@ -16,9 +17,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <Link to='/clubs'>Clubs</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to='/posts'>Posts</Link>
-      </li>
+      </li> */}
       <li>
         <Link to='/dashboard'>
           <i className='fas fa-user' />{' '}
