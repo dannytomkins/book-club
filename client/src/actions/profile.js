@@ -6,6 +6,7 @@ import {
   ACCOUNT_DELETED,
   GET_PROFILE,
   GET_PROFILES,
+  UPDATE_PROFILE,
   PROFILE_ERROR,
 } from './types';
 
@@ -29,8 +30,8 @@ export const getCurrentProfile = () => async (dispatch) => {
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
   // clear what is in current profile, may prevent flashing of past users profiles
-  dispatch({ type: CLEAR_PROFILE })
-  
+  dispatch({ type: CLEAR_PROFILE });
+
   try {
     const res = await axios.get('/api/profile');
 
@@ -47,9 +48,9 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getProfileById = userId => async (dispatch) => {
+export const getProfileById = (userId) => async (dispatch) => {
   // clear what is in current profile, may prevent flashing of past users profiles
-  
+
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -109,6 +110,47 @@ export const createProfile =
       });
     }
   };
+
+// Add book to favorites
+export const addFavorite = (favorite) => async (dispatch) => {
+  try {
+    // since we are sending data we need to set up config object
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    // book = {
+    //   googleId: book.id,
+    //   title: book.volumeInfo.title,
+    //   authors: book.volumeInfo.authors,
+    //   description: book.volumeInfo.description,
+    //   image: book.volumeInfo.imageLinks.thumbnail,
+    //   thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
+    // };
+
+    const res = await axios.put('api/profile/favorites', favorite, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+    console.log(favorite, 'book faved');
+    dispatch(setAlert('Favorite Added', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
 // Delete account and profile.
 export const deleteAccount = () => async (dispatch) => {
