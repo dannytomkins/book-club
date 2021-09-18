@@ -150,3 +150,27 @@ export const editClub =
       });
     }
   };
+
+// Join club
+// psuedo code
+// join club, pass in in club at url.
+// use current logged in user
+// create type to update club?
+export const joinClub = (id) => async (dispatch) => {
+
+  try {
+    const res = await axios.post(`/api/club/member/${id}`);
+
+    dispatch({
+      type: UPDATE_MEMBERS,
+      payload: { id, members: res.data }
+    });
+
+    dispatch(setAlert('Club joined', 'success'));
+  } catch (err) {
+    dispatch({
+      type: CLUB_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
