@@ -55,7 +55,7 @@ const ClubItem = ({
               </Fragment>
             )}
             {/* What are we sending and how do we know which club we are posting a member to */}
-            {!auth.loading && (
+            {!auth.loading && (members.filter((member) => member.user.toString() === auth.user._id).length === 0) && (
               <Fragment>
                 <button
                   onClick={(e) => joinClub(_id)}

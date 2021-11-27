@@ -160,14 +160,14 @@ export const editClub = (id, formData, history) => async (dispatch) => {
 // create type to update club?
 export const joinClub = (id) => async (dispatch) => {
   try {
-    const res = await axios.post(`/api/clubs/members/${id}`);
+    const res = await axios.put(`/api/clubs/members/${id}`);
 
     dispatch({
       type: ADD_MEMBER,
       payload: { id, members: res.data },
     });
 
-    dispatch(setAlert('Club joined', 'success'));
+    dispatch(setAlert('Club joined!', 'success'));
   } catch (err) {
     dispatch({
       type: CLUB_ERROR,
