@@ -78,48 +78,35 @@ router.put(
   }
 );
 
-// @TODO: CHECK USER!!!!
-// @route   PUT api/clubs/members/:id
-// @desc    Edit a club
+
+// @route   PUT api/clubs
+// @desc    Join a club
 // @access  Private
-router.put(
-  '/members/:id',
-  [auth],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+router.put('/members/:id', auth, async (req, res) => {
+  try {
+    const club = await Club.findById(req.params.id);
+
+    // Check to see if user is already a member
+    if (
+      club.members.filter((member) => member.user.toString() === req.user.id).length >
+      0
+    ) {
+      return res.status(400).json({ msg: 'Already a member' });
     }
-    try {
-      // const user = await User.findById(req.user.id).select('-password');
-      const club = await Club.findById(req.params.id);
 
-      // Check if club exists
-      if (!club) {
-        return res.status(404).json({ msg: 'Club not found.' });
-      }
+    // if user is not already a member, use push to put user at the end of array.
+    club.members.push({ user: req.user.id })
 
-      // Check if user is already a member.
-      if (club.members.filter((member) => member.user.toString() === req.user.id).length > 0) {
-        return res.status(400).json({ msg: 'User is already a member.' });
-      }
+    // @TODO: should i be using save or updateOne?
+    await club.save();
 
-      // if user is not already a member, use unshift to put user at the beginning of array
-      club.members.unshift({ user: req.user.id })
-
-      await club.save();
-      res.json(club.members);
-    } catch (err) {
-      console.error(err.message);
-      if (err.kind === 'ObjectId') {
-        return res.status(404).json({ msg: 'Club not found.' });
-      }
-      res.status(500).send('Server error');
-    }
+    res.json(club.members)
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  } catch (err) {
+    
   }
-);
-
-
+});
 
 // @route   GET api/clubs
 // @desc    Get all clubs
