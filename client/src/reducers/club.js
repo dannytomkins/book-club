@@ -1,4 +1,11 @@
-import { GET_CLUB, GET_CLUBS, DELETE_CLUB, CLUB_ERROR, CLEAR_CLUB } from '../actions/types';
+import {
+  GET_CLUB,
+  GET_CLUBS,
+  DELETE_CLUB,
+  CLUB_ERROR,
+  CLEAR_CLUB,
+  ADD_MEMBER,
+} from '../actions/types';
 
 const initialState = {
   clubs: [],
@@ -16,11 +23,17 @@ export default function (state = initialState, action) {
         ...state,
         club: payload,
         loading: false,
-      }
+      };
     case GET_CLUBS:
       return {
         ...state,
         clubs: payload,
+        loading: false,
+      };
+    case ADD_MEMBER:
+      return {
+        ...state,
+        club: payload,
         loading: false,
       };
     // @TODO: may need to change filter if delete button is moved to club page
@@ -44,7 +57,7 @@ export default function (state = initialState, action) {
         ...state,
         club: null,
         loading: false,
-      }
+      };
     default:
       return state;
   }

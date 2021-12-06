@@ -22,6 +22,8 @@ export const GET_CLUBS = 'GET_CLUBS';
 export const CLUB_ERROR = 'CLUB_ERROR';
 export const DELETE_CLUB = 'DELETE_CLUB';
 export const CLEAR_CLUB = 'CLEAR_CLUB';
+export const ADD_MEMBER = 'ADD_MEMBER';
+export const REMOVE_MEMBER = 'REMOVE_MEMBER';
 // Posts
 export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';

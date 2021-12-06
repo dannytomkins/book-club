@@ -1,13 +1,20 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_CLUBS, GET_CLUB, DELETE_CLUB, CLUB_ERROR, CLEAR_CLUB } from './types';
+import {
+  GET_CLUBS,
+  GET_CLUB,
+  DELETE_CLUB,
+  CLUB_ERROR,
+  CLEAR_CLUB,
+  ADD_MEMBER,
+ } from './types';
 
 // // Get clubs
 export const getClubs = () => async (dispatch) => {
   // clear what is in current club, may prevent errors
-  dispatch({ type: CLEAR_CLUB })
-  
+  dispatch({ type: CLEAR_CLUB });
+
   try {
     const res = await axios.get('/api/clubs');
 
@@ -25,9 +32,8 @@ export const getClubs = () => async (dispatch) => {
 
 // Get club
 export const getClub = (id) => async (dispatch) => {
-  
-    // clear what is in current club, may prevent errors
-    // dispatch({ type: CLEAR_CLUB })
+  // clear what is in current club, may prevent errors
+  // dispatch({ type: CLEAR_CLUB })
 
   try {
     const res = await axios.get(`/api/clubs/${id}`);
@@ -113,40 +119,59 @@ export const createClub =
 // Edit club
 // pass in history object that has method push that will redirect to a client side route
 // in order to know if profile is new or editing, updating using a parameter named edit set to false by default
-export const editClub =
-  (id, formData, history) =>
-  async (dispatch) => {
-    try {
-      // since we are sending data we need to set up config object
+export const editClub = (id, formData, history) => async (dispatch) => {
+  try {
+    // since we are sending data we need to set up config object
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
-      const res = await axios.put(`/api/clubs/${id}`, formData, config);
+    const res = await axios.put(`/api/clubs/${id}`, formData, config);
 
-      //@TODO: figure out what type to dispatch on edit submit
-      dispatch({
-        type: GET_CLUB,
-        payload: res.data,
-      });
+    //@TODO: figure out what type to dispatch on edit submit
+    dispatch({
+      type: GET_CLUB,
+      payload: res.data,
+    });
 
-      // if edit is true say club updated, else say club created
-      dispatch(setAlert('Club Updated', 'success'));
+    // if edit is true say club updated, else say club created
+    dispatch(setAlert('Club Updated', 'success'));
 
-      // @TODO: redirect back to club
-      // @TODO: remove edit value from createClub and editClub
-      // if edit then stay on page, if creating then redirect
-      
-        history.push(`/clubs/${id}`);
-      
+    // @TODO: redirect back to club
+    // @TODO: remove edit value from createClub and editClub
+    // if edit then stay on page, if creating then redirect
 
-    } catch (err) {
-      dispatch({
-        type: CLUB_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status },
-      });
-    }
-  };
+    history.push(`/clubs/${id}`);
+  } catch (err) {
+    dispatch({
+      type: CLUB_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Join club
+// psuedo code
+// join club, pass in in club at url.
+// use current logged in user
+// create type to update club?
+export const joinClub = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/clubs/members/${id}`);
+
+    dispatch({
+      type: ADD_MEMBER,
+      payload: { id, members: res.data },
+    });
+
+    dispatch(setAlert('Club joined!', 'success'));
+  } catch (err) {
+    dispatch({
+      type: CLUB_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

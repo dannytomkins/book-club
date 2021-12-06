@@ -39,7 +39,7 @@ router.post(
 );
 
 // @TODO: CHECK USER!!!!
-// @route   PUT api/clubs
+// @route   PUT api/clubs/:id
 // @desc    Edit a club
 // @access  Private
 router.put(
@@ -77,6 +77,7 @@ router.put(
     }
   }
 );
+
 
 // @route   PUT api/clubs
 // @desc    Join a club
